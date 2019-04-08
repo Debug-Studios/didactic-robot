@@ -13,13 +13,50 @@ class AuthService {
   Observable<Map<String, dynamic>> profile;
   final loading = PublishSubject();
 
-  AuthService() {}
+  AuthService() {
+    user = Observable(_firebaseAuth.onAuthStateChanged);
 
-  Future<FirebaseUser> googleSignIn() async {}
+    profile = user.switchMap((FirebaseUser u) {
+      if (u != null) {
+        return _firestore
+            .collection('users')
+            .document(u.uid)
+            .snapshots()
+            .map((snap) => snap.data);
+      } else {
+        return Observable.just({});
+      }
+    });
+  }
 
-  void updateUserData(FirebaseUser user) async {}
+  Future<FirebaseUser> googleSignIn() async {
+    loading.add(true);
 
-  void signOut() {}
+    final googleUser = await _googleSignIn.signIn();
+
+    final googleAuth = await googleUser.authentication;
+    final authCredential = GoogleAuthProvider.getCredential(
+        accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+
+    final user = await _firebaseAuth.signInWithCredential(authCredential);
+    return user;
+  }
+
+  void updateUserData(FirebaseUser user) async {
+    final ref = _firestore.collection('users').document(user.uid);
+
+    return ref.setData({
+      'uid': user.uid,
+      'email': user.email,
+      'photoUrl': user.photoUrl,
+      'displayName': user.displayName,
+      'lastSeen': DateTime.now()
+    }, merge: true);
+  }
+
+  void signOut() {
+    _firebaseAuth.signOut();
+  }
 
   dispose() {
     loading.close();
