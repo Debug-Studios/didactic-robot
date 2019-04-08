@@ -10,7 +10,7 @@ class DidacticRobot extends StatelessWidget {
         brightness: Brightness.dark,
         fontFamily: 'HKGrotesk',
         primarySwatch: Colors.blueGrey,
-        accentColor: Colors.yellowAccent,
+        accentColor: Colors.redAccent,
       ),
       routes: {
         "/": (context) => LoginScreen(),

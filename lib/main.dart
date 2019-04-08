@@ -3,6 +3,6 @@ import 'package:flutter/rendering.dart';
 import './didactic_robot.dart';
 
 void main() {
-  // debugPaintSizeEnabled = true;
+  debugPaintSizeEnabled = true;
   runApp(DidacticRobot());
 }

@@ -5,10 +5,13 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          _buildBackgroundImage(),
+          // _buildBackgroundImage(),
           _buildMainTitle(),
+          SizedBox(height: 60.0),
           _buildBottomButtons(context),
         ],
       ),
@@ -16,30 +19,25 @@ class LoginScreen extends StatelessWidget {
   }
 
   Widget _buildMainTitle() {
-    return Positioned(
-      top: 150,
-      left: 50,
-      right: 50,
-      child: Center(
-        child: Column(
-          children: <Widget>[
-            Text(
-              "DIDACTIC ROBOT",
-              style: TextStyle(
-                fontSize: 36.0,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Anurati',
-              ),
+    return Center(
+      child: Column(
+        children: <Widget>[
+          Text(
+            "DIDACTIC ROBOT",
+            style: TextStyle(
+              fontSize: 36.0,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Anurati',
             ),
-            SizedBox(height: 10.0),
-            Text(
-              "by debug studios",
-              style: TextStyle(
-                fontSize: 24.0,
-              ),
+          ),
+          SizedBox(height: 10.0),
+          Text(
+            "by debug studios",
+            style: TextStyle(
+              fontSize: 24.0,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -57,25 +55,23 @@ class LoginScreen extends StatelessWidget {
   }
 
   Widget _buildBottomButtons(BuildContext context) {
-    return Positioned(
-      bottom: 50,
-      left: 0,
-      right: 0,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          _buildGoogleButton(context),
-          SizedBox(height: 20.0),
-          _buildPhoneButton(context),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        _buildGoogleButton(context),
+        SizedBox(height: 20.0),
+        _buildPhoneButton(context),
+      ],
     );
   }
 
   Widget _buildPhoneButton(BuildContext context) {
     return ButtonTheme(
       height: 50.0,
+      minWidth: 300.0,
       child: RaisedButton.icon(
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(100.0)),
         onPressed: () {},
         label: Text(
           'Login with Phone',
@@ -89,14 +85,17 @@ class LoginScreen extends StatelessWidget {
   Widget _buildGoogleButton(BuildContext context) {
     return ButtonTheme(
       height: 50.0,
+      minWidth: 300.0,
       child: RaisedButton.icon(
-        color: Colors.deepOrange,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(100.0)),
+        color: Colors.white,
         onPressed: () {},
         label: Text(
           "Login with Google",
-          style: Theme.of(context).textTheme.title,
+          style: TextStyle(color: Colors.red, fontSize: 20.0),
         ),
-        icon: Icon(MdiIcons.google),
+        icon: Icon(MdiIcons.google, color: Colors.red),
       ),
     );
   }
