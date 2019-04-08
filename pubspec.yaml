@@ -60,6 +60,10 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
+    - family: Anurati
+      fonts:
+        - asset: assets/fonts/Anurati-Regular.otf
+
     - family: HKGrotesk
       fonts:
         - asset: assets/fonts/HKGrotesk-Regular.otf

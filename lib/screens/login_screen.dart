@@ -9,7 +9,7 @@ class LoginScreen extends StatelessWidget {
         children: <Widget>[
           _buildBackgroundImage(),
           _buildMainTitle(),
-          _buildBottomButtons(),
+          _buildBottomButtons(context),
         ],
       ),
     );
@@ -26,6 +26,7 @@ class LoginScreen extends StatelessWidget {
           style: TextStyle(
             fontSize: 36.0,
             fontWeight: FontWeight.bold,
+            fontFamily: 'Anurati',
           ),
         ),
       ),
@@ -38,48 +39,54 @@ class LoginScreen extends StatelessWidget {
         image: DecorationImage(
           fit: BoxFit.cover,
           image: NetworkImage(
-              'https://images.unsplash.com/photo-1516148066593-477d571e507f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200'),
+              'https://images.pexels.com/photos/209209/pexels-photo-209209.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'),
         ),
       ),
     );
   }
 
-  Widget _buildBottomButtons() {
+  Widget _buildBottomButtons(BuildContext context) {
     return Positioned(
-      // padding: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 30.0),
       bottom: 50,
-      left: 50,
-      right: 50,
+      left: 0,
+      right: 0,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          _buildGoogleButton(),
-          SizedBox(height: 10.0),
-          _buildPhoneButton(),
+          _buildGoogleButton(context),
+          SizedBox(height: 20.0),
+          _buildPhoneButton(context),
         ],
       ),
     );
   }
 
-  Widget _buildPhoneButton() {
-    return RaisedButton.icon(
-      onPressed: () {},
-      label: Text(
-        'Sign in With Phone',
-        textScaleFactor: 1.2,
+  Widget _buildPhoneButton(BuildContext context) {
+    return ButtonTheme(
+      height: 50.0,
+      child: RaisedButton.icon(
+        onPressed: () {},
+        label: Text(
+          'Login with Phone',
+          style: Theme.of(context).textTheme.title,
+        ),
+        icon: Icon(Icons.phone_android),
       ),
-      icon: Icon(Icons.phone_android),
     );
   }
 
-  Widget _buildGoogleButton() {
-    return RaisedButton.icon(
-        color: Colors.lightBlueAccent,
+  Widget _buildGoogleButton(BuildContext context) {
+    return ButtonTheme(
+      height: 50.0,
+      child: RaisedButton.icon(
+        color: Colors.deepOrange,
         onPressed: () {},
         label: Text(
           "Login with Google",
-          textScaleFactor: 1.2,
+          style: Theme.of(context).textTheme.title,
         ),
-        icon: Icon(MdiIcons.google));
+        icon: Icon(MdiIcons.google),
+      ),
+    );
   }
 }
