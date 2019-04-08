@@ -9,7 +9,7 @@ class DidacticRobot extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.dark,
         fontFamily: 'HKGrotesk',
-        primarySwatch: Colors.grey,
+        primarySwatch: Colors.blueGrey,
         accentColor: Colors.yellowAccent,
       ),
       routes: {

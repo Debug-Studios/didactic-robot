@@ -21,13 +21,24 @@ class LoginScreen extends StatelessWidget {
       left: 50,
       right: 50,
       child: Center(
-        child: Text(
-          "DIDACTIC ROBOT",
-          style: TextStyle(
-            fontSize: 36.0,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Anurati',
-          ),
+        child: Column(
+          children: <Widget>[
+            Text(
+              "DIDACTIC ROBOT",
+              style: TextStyle(
+                fontSize: 36.0,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Anurati',
+              ),
+            ),
+            SizedBox(height: 10.0),
+            Text(
+              "by debug studios",
+              style: TextStyle(
+                fontSize: 24.0,
+              ),
+            ),
+          ],
         ),
       ),
     );
