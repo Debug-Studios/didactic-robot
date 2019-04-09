@@ -30,22 +30,26 @@ class AuthBloc {
   }
 
   Future<FirebaseUser> googleSignIn() async {
-    loading.add(true);
+    try {
+      loading.add(true);
 
-    final googleUser = await _googleSignIn.signIn();
+      final googleUser = await _googleSignIn.signIn();
 
-    if (googleUser == null) {
-      return null;
+      if (googleUser == null) {
+        return null;
+      }
+
+      final googleAuth = await googleUser.authentication;
+      final authCredential = GoogleAuthProvider.getCredential(
+          accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+
+      final user = await _firebaseAuth.signInWithCredential(authCredential);
+      loading.add(false);
+      updateUserData(user);
+      return user;
+    } catch (error) {
+      return error;
     }
-
-    final googleAuth = await googleUser.authentication;
-    final authCredential = GoogleAuthProvider.getCredential(
-        accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
-
-    final user = await _firebaseAuth.signInWithCredential(authCredential);
-    loading.add(false);
-    updateUserData(user);
-    return user;
   }
 
   void updateUserData(FirebaseUser user) async {
