@@ -3,7 +3,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:rxdart/rxdart.dart';
 
-class AuthService {
+class AuthBloc {
   // Initializing Firebase services.
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -13,7 +13,7 @@ class AuthService {
   Observable<Map<String, dynamic>> profile;
   final loading = PublishSubject();
 
-  AuthService() {
+  AuthBloc() {
     user = Observable(_firebaseAuth.onAuthStateChanged);
 
     profile = user.switchMap((FirebaseUser u) {
@@ -33,6 +33,10 @@ class AuthService {
     loading.add(true);
 
     final googleUser = await _googleSignIn.signIn();
+
+    if (googleUser == null) {
+      return null;
+    }
 
     final googleAuth = await googleUser.authentication;
     final authCredential = GoogleAuthProvider.getCredential(
@@ -63,4 +67,4 @@ class AuthService {
   }
 }
 
-final AuthService authService = AuthService();
+final AuthBloc authBloc = AuthBloc();

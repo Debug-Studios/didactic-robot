@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
+import '../blocs/AuthBloc.dart';
+
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -93,7 +95,7 @@ class LoginScreen extends StatelessWidget {
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(100.0)),
         color: Colors.white,
-        onPressed: () {},
+        onPressed: () => authBloc.googleSignIn(),
         label: Text(
           "Login with Google",
           style: TextStyle(color: Colors.red, fontSize: 20.0),
