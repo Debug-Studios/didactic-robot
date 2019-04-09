@@ -28,12 +28,12 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[_buildMainTitle()],
+        children: <Widget>[_buildLogo()],
       ),
     );
   }
 
-  Widget _buildMainTitle() {
+  Widget _buildLogo() {
     return Center(
       child: Column(
         children: <Widget>[
@@ -43,13 +43,6 @@ class _SplashScreenState extends State<SplashScreen> {
               fontSize: 36.0,
               fontWeight: FontWeight.bold,
               fontFamily: 'Anurati',
-            ),
-          ),
-          SizedBox(height: 10.0),
-          Text(
-            "by debug studios",
-            style: TextStyle(
-              fontSize: 24.0,
             ),
           ),
         ],
