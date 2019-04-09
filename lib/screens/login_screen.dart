@@ -12,7 +12,8 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     authBloc.user.listen((data) {
-      if (data.uid != null) {
+      if (data?.uid != null) {
+        print(data);
         Navigator.pushReplacementNamed(context, '/home');
       }
     });

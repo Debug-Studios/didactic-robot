@@ -44,6 +44,7 @@ class AuthBloc {
 
     final user = await _firebaseAuth.signInWithCredential(authCredential);
     loading.add(false);
+    updateUserData(user);
     return user;
   }
 
@@ -55,7 +56,7 @@ class AuthBloc {
       'email': user.email,
       'photoUrl': user.photoUrl,
       'displayName': user.displayName,
-      'lastSeen': DateTime.now()
+      'phoneNumber': user.phoneNumber
     }, merge: true);
   }
 
