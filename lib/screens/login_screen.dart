@@ -11,7 +11,9 @@ class LoginScreen extends StatelessWidget {
         children: <Widget>[
           // _buildBackgroundImage(),
           _buildMainTitle(),
-          SizedBox(height: 60.0),
+          SizedBox(
+            height: 150.0,
+          ),
           _buildBottomButtons(context),
         ],
       ),
@@ -72,6 +74,7 @@ class LoginScreen extends StatelessWidget {
       child: RaisedButton.icon(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(100.0)),
+        color: Colors.red,
         onPressed: () {},
         label: Text(
           'Login with Phone',
