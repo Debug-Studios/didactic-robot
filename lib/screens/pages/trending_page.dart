@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../blocs/AuthBloc.dart';
-
-class SettingsPage extends StatelessWidget {
+class TrendingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "SETTINGS",
+          "TRENDING",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
