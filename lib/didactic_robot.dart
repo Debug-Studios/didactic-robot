@@ -18,7 +18,7 @@ class DidacticRobot extends StatelessWidget {
       ),
       routes: {
         "/": (context) => SplashScreen(),
-        "/login": (context) => LoginScreen(),
+        "/auth": (context) => LoginScreen(),
         "/home": (context) => HomeScreen(),
       },
     );

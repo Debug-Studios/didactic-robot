@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
       if (data?.uid != null) {
         Navigator.pushReplacementNamed(context, '/home');
       } else {
-        Navigator.pushReplacementNamed(context, '/login');
+        Navigator.pushReplacementNamed(context, '/auth');
       }
     });
     super.initState();
