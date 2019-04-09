@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import './screens/login_screen.dart';
 import './screens/home_screen.dart';
+import './screens/splash_screen.dart';
 
 class DidacticRobot extends StatelessWidget {
   @override
@@ -16,7 +17,8 @@ class DidacticRobot extends StatelessWidget {
         accentColor: Colors.redAccent,
       ),
       routes: {
-        "/": (context) => LoginScreen(),
+        "/": (context) => SplashScreen(),
+        "/login": (context) => LoginScreen(),
         "/home": (context) => HomeScreen(),
       },
     );

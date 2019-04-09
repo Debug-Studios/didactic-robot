@@ -9,15 +9,15 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  @override
-  void initState() {
-    authBloc.user.listen((data) {
-      if (data?.uid != null) {
-        Navigator.pushReplacementNamed(context, '/home');
-      }
-    });
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   authBloc.user.listen((data) {
+  //     if (data?.uid != null) {
+  //       Navigator.pushReplacementNamed(context, '/home');
+  //     }
+  //   });
+  //   super.initState();
+  // }
 
   @override
   void dispose() {
