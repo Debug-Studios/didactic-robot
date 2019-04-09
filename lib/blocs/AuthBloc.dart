@@ -43,6 +43,7 @@ class AuthBloc {
         accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
 
     final user = await _firebaseAuth.signInWithCredential(authCredential);
+    loading.add(false);
     return user;
   }
 

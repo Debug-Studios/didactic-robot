@@ -35,6 +35,8 @@ dependencies:
 
   rxdart: ^0.21.0
 
+  # Ui Related dependencies
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

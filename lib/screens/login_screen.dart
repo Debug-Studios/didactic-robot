@@ -3,7 +3,28 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 
 import '../blocs/AuthBloc.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  @override
+  void initState() {
+    authBloc.user.listen((data) {
+      if (data.uid != null) {
+        Navigator.pushReplacementNamed(context, '/home');
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    authBloc.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,38 +91,50 @@ class LoginScreen extends StatelessWidget {
   }
 
   Widget _buildPhoneButton(BuildContext context) {
-    return ButtonTheme(
-      height: 50.0,
-      minWidth: 300.0,
-      child: RaisedButton.icon(
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(100.0)),
-        color: Colors.red,
-        onPressed: () {},
-        label: Text(
-          'Login with Phone',
-          style: Theme.of(context).textTheme.title,
-        ),
-        icon: Icon(Icons.phone_android),
-      ),
-    );
+    return StreamBuilder(
+        stream: authBloc.loading,
+        builder: (context, snapshot) {
+          return ButtonTheme(
+            height: 50.0,
+            minWidth: 300.0,
+            child: RaisedButton.icon(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(100.0)),
+              color: Colors.red,
+              onPressed: () {},
+              label: Text(
+                'Login with Phone',
+                style: Theme.of(context).textTheme.title,
+              ),
+              icon: Icon(Icons.phone_android),
+            ),
+          );
+        });
   }
 
   Widget _buildGoogleButton(BuildContext context) {
-    return ButtonTheme(
-      height: 50.0,
-      minWidth: 300.0,
-      child: RaisedButton.icon(
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(100.0)),
-        color: Colors.white,
-        onPressed: () => authBloc.googleSignIn(),
-        label: Text(
-          "Login with Google",
-          style: TextStyle(color: Colors.red, fontSize: 20.0),
-        ),
-        icon: Icon(MdiIcons.google, color: Colors.red),
-      ),
-    );
+    return StreamBuilder(
+        stream: authBloc.loading,
+        builder: (context, snapshot) {
+          return snapshot.data == true
+              ? CircularProgressIndicator(
+                  backgroundColor: Colors.white,
+                )
+              : ButtonTheme(
+                  height: 50.0,
+                  minWidth: 300.0,
+                  child: RaisedButton.icon(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(100.0)),
+                    color: Colors.white,
+                    onPressed: () => authBloc.googleSignIn(),
+                    label: Text(
+                      "Login with Google",
+                      style: TextStyle(color: Colors.red, fontSize: 20.0),
+                    ),
+                    icon: Icon(MdiIcons.google, color: Colors.red),
+                  ),
+                );
+        });
   }
 }
