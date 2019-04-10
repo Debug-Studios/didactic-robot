@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -9,9 +10,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  StreamSubscription streamSubscription;
+
   @override
   void initState() {
-    authBloc.user.listen((data) {
+    streamSubscription = authBloc.user.listen((data) {
       if (data?.uid != null) {
         Navigator.pushReplacementNamed(context, '/home');
       }
@@ -21,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
-    authBloc.dispose();
+    streamSubscription.cancel();
     super.dispose();
   }
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 import './screens/login_screen.dart';
 import './screens/home_screen.dart';
 import './screens/splash_screen.dart';
+import './blocs/AuthBloc.dart';
 
 class DidacticRobot extends StatelessWidget {
   @override

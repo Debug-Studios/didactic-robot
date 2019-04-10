@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../blocs/AuthBloc.dart';
@@ -10,9 +11,11 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  StreamSubscription streamSubscription;
+
   @override
   void initState() {
-    authBloc.user.listen((data) {
+    streamSubscription = authBloc.user.listen((data) {
       if (data?.uid != null) {
         Navigator.pushReplacementNamed(context, '/home');
       } else {
@@ -20,6 +23,12 @@ class _SplashScreenState extends State<SplashScreen> {
       }
     });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    streamSubscription.cancel();
+    super.dispose();
   }
 
   @override
