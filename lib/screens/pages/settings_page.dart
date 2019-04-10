@@ -21,11 +21,28 @@ class SettingsPage extends StatelessWidget {
 
   Widget _buildSettingsPageBody() {
     return StreamBuilder(
-        stream: authBloc.user,
+        stream: authBloc.profile,
         builder: (context, snapshot) {
           return Container(
             child: ListView(
               children: <Widget>[
+                Column(children: <Widget>[
+                  Image(
+                    image: NetworkImage(authBloc.currentUser.photoUrl),
+                    width: 200,
+                    height: 200,
+                  ),
+                  SizedBox(height: 20.0),
+                  Text(
+                    authBloc.currentUser.displayName,
+                    style: Theme.of(context).textTheme.headline,
+                  ),
+                  Text(
+                    authBloc.currentUser.email,
+                    style: Theme.of(context).textTheme.subhead,
+                  )
+                ]),
+                SizedBox(height: 20.0),
                 Divider(),
                 ListTile(
                   title: Text('LOGOUT'),

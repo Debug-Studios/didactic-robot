@@ -2,12 +2,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:rxdart/rxdart.dart';
+import '../models/User.dart';
 
 class AuthBloc {
   // Initializing Firebase services.
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final Firestore _firestore = Firestore.instance;
+  static User _currentUser;
+
+  User get currentUser => _currentUser ?? null;
 
   Observable<FirebaseUser> user;
   Observable<Map<String, dynamic>> profile;
@@ -27,6 +31,11 @@ class AuthBloc {
         return Observable.just({});
       }
     });
+
+    profile.listen((user) => {
+          _currentUser = User(user['uid'], user['email'], user['photoUrl'],
+              user['displayName'], user['phoneNumber'])
+        });
   }
 
   Future<FirebaseUser> googleSignIn() async {
