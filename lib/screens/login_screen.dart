@@ -90,13 +90,13 @@ class _LoginScreenState extends State<LoginScreen> {
             child: RaisedButton.icon(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(100.0)),
-              color: Colors.red,
+              color: Colors.blue,
               onPressed: () {},
               label: Text(
-                'Login with Phone',
+                'Login with Facebook',
                 style: Theme.of(context).textTheme.title,
               ),
-              icon: Icon(Icons.phone_android),
+              icon: Icon(MdiIcons.facebook),
             ),
           );
         });

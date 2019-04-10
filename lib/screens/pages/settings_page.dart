@@ -33,7 +33,7 @@ class SettingsPage extends StatelessWidget {
                   subtitle: Text("Deletes your login data from your device."),
                   onTap: () {
                     authBloc.signOut();
-                    Navigator.pushReplacementNamed(context, "/");
+                    Navigator.pushReplacementNamed(context, "/auth");
                   },
                 ),
                 Divider(),
