@@ -24,13 +24,21 @@ class SettingsPage extends StatelessWidget {
         stream: authBloc.profile,
         builder: (context, snapshot) {
           return Container(
+            padding: EdgeInsets.fromLTRB(0, 20.0, 0, 0),
             child: ListView(
               children: <Widget>[
                 Column(children: <Widget>[
-                  Image(
-                    image: NetworkImage(authBloc.currentUser.photoUrl),
+                  Container(
                     width: 200,
                     height: 200,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(100.0)),
+                      border: Border.all(
+                          color: Theme.of(context).accentColor, width: 3.0),
+                      image: DecorationImage(
+                        image: NetworkImage(authBloc.currentUser.photoUrl),
+                      ),
+                    ),
                   ),
                   SizedBox(height: 20.0),
                   Text(
