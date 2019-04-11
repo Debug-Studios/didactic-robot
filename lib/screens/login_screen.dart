@@ -104,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(100.0)),
               color: Colors.blue,
-              onPressed: () {},
+              onPressed: null,
               label: Text(
                 'Login with Facebook',
                 style: Theme.of(context).textTheme.title,
