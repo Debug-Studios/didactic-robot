@@ -16,8 +16,8 @@ class DidacticRobot extends StatelessWidget {
         primarySwatch: Colors.blueGrey,
         accentColor: Colors.redAccent,
       ),
+      home: SplashScreen(),
       routes: {
-        "/": (context) => SplashScreen(),
         "/auth": (context) => LoginScreen(),
         "/home": (context) => HomeScreen(),
       },

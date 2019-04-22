@@ -13,8 +13,12 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   StreamSubscription streamSubscription;
 
-  @override
-  void initState() {
+  startTime() async {
+    var _duration = new Duration(seconds: 2);
+    return new Timer(_duration, navigationPages);
+  }
+
+  void navigationPages() {
     streamSubscription = authBloc.user.listen((data) {
       if (data?.uid != null) {
         Navigator.pushReplacementNamed(context, '/home');
@@ -22,7 +26,12 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.pushReplacementNamed(context, '/auth');
       }
     });
+  }
+
+  @override
+  void initState() {
     super.initState();
+    startTime();
   }
 
   @override
@@ -37,7 +46,17 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[_buildLogo()],
+        children: <Widget>[
+          _buildLogo(),
+          SizedBox(
+            height: 20.0,
+          ),
+          CircularProgressIndicator(),
+          SizedBox(
+            height: 10.0,
+          ),
+          _buildText()
+        ],
       ),
     );
   }
@@ -58,4 +77,10 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
     );
   }
+}
+
+Widget _buildText() {
+  return Center(
+    child: Text("Please wait..."),
+  );
 }
